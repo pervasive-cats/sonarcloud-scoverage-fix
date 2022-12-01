@@ -1,0 +1,25 @@
+name: SonarCloud Scoverage Fix
+description: Fixes the default behavior of the SonarCloud Scoverage sensor that mismatches the import of scala sources
+inputs:
+  scoverageReport:
+    description: The path to the Scoverage report in XML format
+    required: true
+  args:
+    description: Additional arguments to the SonarCloud scanner
+    required: false
+  projectBaseDir:
+    description: Set the sonar.projectBaseDir analysis property
+    required: false
+    default: .
+runs:
+  using: composite
+  steps:
+  - name: Replace all working directory paths with sources path
+    run: sed -i -e s,`pwd`,/github/workspace,g ${{ inputs.scoverageReport }}
+    shell: bash
+  - name: SonarCloud Scan
+    uses: SonarSource/sonarcloud-github-action@v1.8
+    with:
+      args: ${{ inputs.args }}
+      projectBaseDir: ${{ inputs.projectBaseDir }}
+      
