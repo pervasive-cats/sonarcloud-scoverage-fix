@@ -1,5 +1,8 @@
 name: SonarCloud Scoverage Fix
 description: Fixes the default behavior of the SonarCloud Scoverage sensor that mismatches the import of scala sources
+branding:
+  icon: check-circle
+  color: green
 inputs:
   scoverageReport:
     description: The path to the Scoverage report in XML format
