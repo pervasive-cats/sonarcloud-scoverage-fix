@@ -6,7 +6,7 @@ branding:
 inputs:
   scoverageReport:
     description: The path to the Scoverage report in XML format
-    required: true
+    required: false
   args:
     description: Additional arguments to the SonarCloud scanner
     required: false
@@ -18,7 +18,7 @@ runs:
   using: composite
   steps:
   - name: Replace all working directory paths with sources path
-    run: sed -i -e s,`pwd`,/github/workspace,g ${{ inputs.scoverageReport }}
+    run: if [[ -n "${{ inputs.scoverageReport }}" ]]; then sed -i -e s,`pwd`,/github/workspace,g ${{ inputs.scoverageReport }}; fi
     shell: bash
   - name: SonarCloud Scan
     uses: SonarSource/sonarcloud-github-action@v1.8
