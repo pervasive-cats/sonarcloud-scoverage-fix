@@ -27,7 +27,7 @@ That's it. That's the solution.
 ## So, what should I do?
 
 You need to pass the path of the Scoverage report location, complete with the XML filename, to this action using the
-``scoverageReport`` key. This key is required. An example of workflow using it is the following one.
+``scoverageReport`` key. If this key is absent, no substitution will be performed. An example of workflow using it is the following one.
 
 ```YAML
 name: Workflow
