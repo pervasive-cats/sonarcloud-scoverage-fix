@@ -21,7 +21,7 @@ runs:
     run: if [[ -n "${{ inputs.scoverageReport }}" ]]; then sed -i -e s,`pwd`,/github/workspace,g ${{ inputs.scoverageReport }}; fi
     shell: bash
   - name: SonarCloud Scan
-    uses: SonarSource/sonarcloud-github-action@v2.2
+    uses: SonarSource/sonarcloud-github-action@v2.3
     with:
       args: ${{ inputs.args }}
       projectBaseDir: ${{ inputs.projectBaseDir }}
